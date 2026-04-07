@@ -1,46 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function Calculadora() {
+export default function App() {
+  const [valor1, setValor1] = useState(0);
+  const [valor2, setValor2] = useState(0)
+  const [resultado, setResultado] = useState(0);
+
+  function somar() {
+    setResultado(Number(valor1) + Number(valor2));
+  }
+
+  function subtrair() {
+    setResultado((valor1) - (valor2));
+  }
+
+  function multiplicar() {
+    setResultado((valor1) * (valor2));
+  }
+
+  function dividir() {
+    setResultado((valor1) / (valor2));
+  }
+
   return (
     <View style={estilos.container}>
-
       <Text style={estilos.titulo}>CALCULADORA</Text>
 
       <TextInput
-        placeholder="valor 01"
+        placeholder="Valor 1"
         style={estilos.input}
+        keyboardType="numeric"
+        value={valor1}
+        onChangeText={setValor1}
       />
 
       <TextInput
-        placeholder="valor 02"
+        placeholder="Valor 2"
         style={estilos.input}
+        keyboardType="numeric"
+        value={valor2}
+        onChangeText={setValor2}
       />
 
       <View style={estilos.areaBotoes}>
-        
-        <TouchableOpacity style={[estilos.botao, estilos.somar]}>
+        <TouchableOpacity style={[estilos.botao, estilos.somar]} onPress={somar}>
           <Text style={estilos.textoBotao}>SOMAR</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[estilos.botao, estilos.subtrair]}>
+        <TouchableOpacity style={[estilos.botao, estilos.subtrair]} onPress={subtrair}>
           <Text style={estilos.textoBotao}>SUBTRAIR</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[estilos.botao, estilos.multiplicar]}>
+        <TouchableOpacity style={[estilos.botao, estilos.multiplicar]} onPress={multiplicar}>
           <Text style={estilos.textoBotao}>MULTIPLICAR</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[estilos.botao, estilos.dividir]}>
+        <TouchableOpacity style={[estilos.botao, estilos.dividir]} onPress={dividir}>
           <Text style={estilos.textoBotao}>DIVIDIR</Text>
         </TouchableOpacity>
-
       </View>
 
       <View style={estilos.resultadoBox}>
-        <Text style={estilos.resultadoTexto}>0</Text>
+        <Text style={estilos.resultadoTexto}>{resultado}</Text>
       </View>
-
     </View>
   );
 }
