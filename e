@@ -18,9 +18,13 @@ export default function App() {
     setResultado((valor1) * (valor2));
   }
 
-  function dividir() {
-    setResultado((valor1) / (valor2));
+function dividir() {
+  if (Number(valor2) === 0) {
+    setResultado(0);
+  } else {
+    setResultado(Number(valor1) / Number(valor2));
   }
+}
 
   return (
     <View style={estilos.container}>
